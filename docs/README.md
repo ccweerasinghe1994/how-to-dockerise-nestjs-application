@@ -135,3 +135,51 @@ let's make a request to the app
 
 we can see that the app is running on the docker container
 but we can't access it from the browser because it's running on the docker container
+
+let's remove the running container
+
+```bash
+docker rm -f <container id>
+```
+
+then let's run the container again but this time we will map the port 3000 of the container to the port 3000 of the host machine
+
+```bash
+docker run -p 3000:3000 nestjs-docker
+```
+
+![Alt text](image-4.png)
+
+now when we change the code in the app it will not be reflected in the container because we are not mounting the code to the container.
+
+let's create a prod docker file
+
+```Dockerfile
+FROM node:21
+
+WORKDIR /user/src/app
+
+COPY . .
+
+RUN npm install
+
+RUN npm run build
+
+RUN rm -rf .src
+
+EXPOSE 3000
+
+CMD [ "npm", "run","start:prod" ]
+```
+
+```bash
+docker image build -t nestjs-prod -f Dockerfile.prod .
+```
+
+![Alt text](image-5.png)
+
+let's run the image
+
+```bash
+docker run -p 3000:3000 nestjs-prod
+```
