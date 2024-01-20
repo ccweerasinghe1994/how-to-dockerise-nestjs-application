@@ -128,3 +128,10 @@ docker run nestjs-docker
 ![Alt text](image-1.png)
 
 ![Alt text](image-2.png)
+
+let's make a request to the app
+
+![Alt text](image-3.png)
+
+we can see that the app is running on the docker container
+but we can't access it from the browser because it's running on the docker container
