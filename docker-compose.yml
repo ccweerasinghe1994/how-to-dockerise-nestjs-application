@@ -1,5 +1,5 @@
 services:
-  nestjs_api:
+  nestjs_api_dev:
     build: 
       context: .
       dockerfile: Dockerfile
