@@ -183,3 +183,28 @@ let's run the image
 ```bash
 docker run -p 3000:3000 nestjs-prod
 ```
+
+let's create a docker compose file for prod
+
+```yml
+services:
+  nestjs_api_prod:
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - 30001:30001
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+    volumes:
+      - ./src:/usr/src/app/src
+```
+
+let's run the docker compose file
+
+```bash
+docker-compose -f docker-compose.prod.yml up --build
+```
+
+![Alt text](image-6.png)
